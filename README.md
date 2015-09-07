@@ -46,3 +46,8 @@ If the source uses different months or they can not be identified, store as Q0.
 ```
 Q0 = Any other quaterly file
 ```
+
+This is to keep the entity part of the filename clean and avoid misreading a quaterly file as a single month.
+```
+E0604_CWACUA_gov_2015_Q0.csv
+```
