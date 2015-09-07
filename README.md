@@ -43,7 +43,7 @@ Q4 = Oct-Dec
 Q0 = Any other quaterly file
 ```
 
-If the source uses different months or they can not be identified, store as Q0.
+If the source file contains different months or the quarter can not be identified, store as Q0.
 
 
 This is to keep the entity part of the filename clean and avoid misreading a quaterly file as a single month.
