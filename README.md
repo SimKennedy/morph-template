@@ -29,7 +29,7 @@ The goal of the SCRAPE DATA section is to create the 'data' list in this format.
 [csvYr, csvMth, url]]
 ```
 
-Any extra module imports or code needed to achieve this for each scraper should stay in this section.
+Any extra module imports or code needed to achieve this for each scraper should stay in this section in case we need to edit changes in other sections without breaking the scraper.
 
 ---
 
@@ -54,4 +54,5 @@ Example filenames.
 E0604_CWACUA_gov_2014_09
 E0604_CWACUA_gov_2015_Q0
 E0604_CWACUA_gov_2015_Q0
+E0604_CWACUA_gov_2015_Q4
 ```
