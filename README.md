@@ -28,7 +28,7 @@ The goal of the SCRAPE DATA section is to create the 'data' list in this format.
 [csvYr, csvMth, url]]
 ```
 
-Any extra module imports or code needed to achieve this should stay in this section.
+Any extra module imports or code needed to achieve this for each scraper should stay in this section.
 
 ---
 
