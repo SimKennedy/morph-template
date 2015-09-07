@@ -1,6 +1,7 @@
 
 ###Notes on the Spend Network morph scrapers for spend files. (sp_)
 
+For all future scrapers and edits to old scrapers, use the code from 'scraper_template.py'
 
 Where possible, try to stick to the template, editing only the 'VARIABLES' and 'SCRAPE DATA' sections.
 This is to keep future editing easier and possible with Search/Replace function.
@@ -39,16 +40,18 @@ Q1 = Jan-Mar
 Q2 = Apr-Jun
 Q3 = Jul-Sep
 Q4 = Oct-Dec
+Q0 = Any other quaterly file
 ```
 
 If the source uses different months or they can not be identified, store as Q0.
 
-```
-Q0 = Any other quaterly file
-```
 
 This is to keep the entity part of the filename clean and avoid misreading a quaterly file as a single month.
-Eg.
+Duplicates are ok if the quarter can not be identified.
+
+Example filenames.
 ```
-E0604_CWACUA_gov_2015_Q0.csv
+E0604_CWACUA_gov_2014_09
+E0604_CWACUA_gov_2015_Q0
+E0604_CWACUA_gov_2015_Q0
 ```
