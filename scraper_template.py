@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup
 #### FUNCTIONS 1.0
 
 def validateFilename(filename):
-    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9Q][0-9]$'
-    dateregex = '[0-9][0-9][0-9][0-9]_[0-9Q][0-9]'
+    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9QY][0-9]$'
+    dateregex = '[0-9][0-9][0-9][0-9]_[0-9QY][0-9]'
     validName = (re.search(filenameregex, filename) != None)
     found = re.search(dateregex, filename)
     if not found:
@@ -25,6 +25,8 @@ def validateFilename(filename):
     validYear = (2000 <= int(year) <= now.year)
     if 'Q' in date:
         validMonth = (month in ['Q0', 'Q1', 'Q2', 'Q3', 'Q4'])
+    elif 'Y' in date:
+        validMonth = (month in ['Y1'])
     else:
         try:
             validMonth = datetime.strptime(date, "%Y_%m") < now
@@ -86,6 +88,7 @@ def convert_mth_strings ( mth_string ):
 entity_id = "E0203_CBUA_gov"
 url = "http://www.centralbedfordshire.gov.uk/council-and-democracy/spending/transparency/default.aspx"
 errors = 0
+data = []
 
 
 #### READ HTML 1.0
@@ -96,23 +99,14 @@ soup = BeautifulSoup(html, "lxml")
 
 #### SCRAPE DATA
 
-data = []
 links = soup.find_all('a', href=True)
 for link in links:
-    if 'financial-year' in link['href']:
-        link_csv = 'http://www.centralbedfordshire.gov.uk' + link['href']
-        html_csv = urllib2.urlopen(link_csv)
-        soup_csv = BeautifulSoup(html_csv)
-        links_csv = soup_csv.find_all('a', href=True)
-        for l_csv in links_csv:
-            if '.csv' in l_csv['href']:
-                if 'Transparency' in l_csv['href']:
-                    url = 'http://www.centralbedfordshire.gov.uk' + l_csv['href']
-                    csvfile = l_csv.text.strip().replace(u'\xa0', ' ').split(' ')
-                    csvMth = csvfile[0][:3]
-                    csvYr = csvfile[1].strip()
-                    csvMth = convert_mth_strings(csvMth.upper())
-                    data.append([csvYr, csvMth, url.strip('#False')])
+    if 'monthly' in link:
+        url = link['href']
+        csvfile = link.text.strip().split(' ')
+        csvYr = csvfile[1].strip()
+        csvMth = csvfile[0].strip()
+        data.append([csvYr, csvMth, url])
 
 
 #### STORE DATA 1.0

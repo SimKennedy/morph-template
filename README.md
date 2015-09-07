@@ -43,11 +43,14 @@ Q4 = Oct-Dec
 Q0 = Any other quaterly file
 ```
 
-If the source file contains different months or the quarter can not be identified, store as Q0.
-
+If the source file contains different months or the quarter can not be identified, store as 'Q0'.
 
 This is to keep the entity part of the filename clean and avoid misreading a quaterly file as a single month.
 Duplicates are ok if the quarter can not be identified.
+
+For yearly/annual files, store 'Y1' in the 'csvMth' variable. Eg.
+
+---
 
 Example filenames.
 ```
@@ -55,4 +58,5 @@ E0604_CWACUA_gov_2014_09
 E0604_CWACUA_gov_2015_Q0
 E0604_CWACUA_gov_2015_Q0
 E0604_CWACUA_gov_2015_Q4
+E0604_CWACUA_gov_2013_Y1
 ```

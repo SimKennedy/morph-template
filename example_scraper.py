@@ -6,7 +6,6 @@ import os
 import re
 import scraperwiki
 import urllib2
-import time
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -14,8 +13,8 @@ from bs4 import BeautifulSoup
 #### FUNCTIONS 1.0
 
 def validateFilename(filename):
-    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9Q][0-9]$'
-    dateregex = '[0-9][0-9][0-9][0-9]_[0-9Q][0-9]'
+    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9QY][0-9]$'
+    dateregex = '[0-9][0-9][0-9][0-9]_[0-9QY][0-9]'
     validName = (re.search(filenameregex, filename) != None)
     found = re.search(dateregex, filename)
     if not found:
@@ -25,7 +24,9 @@ def validateFilename(filename):
     year, month = date[:4], date[5:7]
     validYear = (2000 <= int(year) <= now.year)
     if 'Q' in date:
-        validMonth = (month in ['Q1', 'Q2', 'Q3', 'Q4'])
+        validMonth = (month in ['Q0', 'Q1', 'Q2', 'Q3', 'Q4'])
+    elif 'Y' in date:
+        validMonth = (month in ['Y1'])
     else:
         try:
             validMonth = datetime.strptime(date, "%Y_%m") < now
@@ -86,8 +87,8 @@ def convert_mth_strings ( mth_string ):
 
 entity_id = "E0203_CBUA_gov"
 url = "http://www.centralbedfordshire.gov.uk/council-and-democracy/spending/transparency/default.aspx"
-data = []
 errors = 0
+data = []
 
 
 #### READ HTML 1.0

@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup
 #### FUNCTIONS 1.0
 
 def validateFilename(filename):
-    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9Q][0-9]$'
-    dateregex = '[0-9][0-9][0-9][0-9]_[0-9Q][0-9]'
+    filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9QY][0-9]$'
+    dateregex = '[0-9][0-9][0-9][0-9]_[0-9QY][0-9]'
     validName = (re.search(filenameregex, filename) != None)
     found = re.search(dateregex, filename)
     if not found:
@@ -25,6 +25,8 @@ def validateFilename(filename):
     validYear = (2000 <= int(year) <= now.year)
     if 'Q' in date:
         validMonth = (month in ['Q0', 'Q1', 'Q2', 'Q3', 'Q4'])
+    elif 'Y' in date:
+        validMonth = (month in ['Y1'])
     else:
         try:
             validMonth = datetime.strptime(date, "%Y_%m") < now
@@ -86,6 +88,7 @@ def convert_mth_strings ( mth_string ):
 entity_id = "E0604_CWACUA_gov"
 url = "http://opendata.cheshirewestandchester.gov.uk/?cat=57"
 errors = 0
+data = []
 
 
 #### READ HTML 1.0
@@ -100,7 +103,6 @@ import sys
 reload(sys) # Reload does the trick!
 sys.setdefaultencoding('UTF8')
 
-data = []
 blocks = soup.find_all('div', 'entry-summary')
 for block in blocks:
     links = block.find_all('a', href=True)
@@ -123,7 +125,7 @@ for block in blocks:
                 if 'Qtr' in url:
                     try:
                         qtr = re.search('Qtr([1-4])', url).group(1)
-                        csvMth = 'Q' + str(int(qtr) + 1)
+                        csvMth = 'Q' + qtr
                     except:
                         csvMth = 'Q0'
                 data.append([csvYr, csvMth, url])
