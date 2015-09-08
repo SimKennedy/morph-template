@@ -114,7 +114,8 @@ for link in links:
                     csvMth = csvfile[0][:3]
                     csvYr = csvfile[1].strip()
                     csvMth = convert_mth_strings(csvMth.upper())
-                    data.append([csvYr, csvMth, url.strip('#False')])
+                    url.strip('#False')
+                    data.append([csvYr, csvMth, url])
 
 
 #### VERIFY AND SAVE 1.0
@@ -124,9 +125,9 @@ for row in data:
     todays_date = str(datetime.now())
     file_url = url.strip()
 
-    passed = validate(filename, file_url)
+    valid = validate(filename, file_url)
 
-    if passed == True:
+    if valid == True:
         scraperwiki.sqlite.save(unique_keys=['l'], data={"l": file_url, "f": filename, "d": todays_date })
         print filename
     else:

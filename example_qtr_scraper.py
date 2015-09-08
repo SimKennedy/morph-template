@@ -139,9 +139,9 @@ for row in data:
     todays_date = str(datetime.now())
     file_url = url.strip()
 
-    passed = validate(filename, file_url)
+    valid = validate(filename, file_url)
 
-    if passed == True:
+    if valid == True:
         scraperwiki.sqlite.save(unique_keys=['l'], data={"l": file_url, "f": filename, "d": todays_date })
         print filename
     else:

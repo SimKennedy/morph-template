@@ -4,7 +4,7 @@
 For all future scrapers and edits to old scrapers, use the code from 'scraper_template.py'
 
 Where possible, try to stick to the template, editing only the 'VARIABLES' and 'SCRAPE DATA' sections.
-This is to keep future editing easier and possible with Search/Replace function.
+This is to keep future editing easier and possible with Search/Replace.
 Especially as we move in to 100s of scrapers.
 
 
@@ -29,7 +29,7 @@ The goal of the SCRAPE DATA section is to create the 'data' list in this format.
 [csvYr, csvMth, url]]
 ```
 
-Any extra module imports or code needed to achieve this for each scraper should stay in this section in case we need to edit changes in other sections without breaking the scraper.
+Any extra module imports or code needed for each scraper should stay in this section in case we need to edit changes in other sections without breaking the scraper.
 
 ---
 
@@ -48,7 +48,7 @@ If the source file contains different months or the quarter can not be identifie
 This is to keep the entity part of the filename clean and avoid misreading a quaterly file as a single month.
 Duplicates are ok if the quarter can not be identified.
 
-For yearly/annual files, store 'Y1' in the 'csvMth' variable. Eg.
+For yearly/annual files, store 'Y1' in the 'csvMth' variable.
 
 ---
 
