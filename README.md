@@ -1,7 +1,6 @@
 
 ###Notes on the Spend Network morph scrapers for spend files. (sp_)
 
-
 For all future scrapers and edits to old scrapers, use the code from 'scraper_template.py'
 
 Where possible, try to stick to the template, editing only the 'VARIABLES' and 'SCRAPE DATA' sections.
