@@ -3,17 +3,23 @@
 
 For all future scrapers and edits to old scrapers, use the code from 'scraper_template.py'
 
-Where possible, try to stick to the template, editing only the 'VARIABLES' and 'SCRAPE DATA' sections.
+Please do not change any of the template unless necessary for the scraper to work.
 This is to keep future editing easier and possible with Search/Replace.
 Especially as we move in to 100s of scrapers.
+
+PLEASE ONLY CHANGE THE CODE IN 'VARIABLES' AND 'SCRAPE DATA'.
+(Unless necessary for the scraper to work.)
 
 
 ```
 #### IMPORTS 1.0
 #### FUNCTIONS 1.0
 #### VARIABLES 1.0
-#### READ HTML 1.0
+     Change variables here
+#### READ HTML 1.0     
 #### SCRAPE DATA
+     import [any new imports]
+     Change code here   
 #### STORE DATA 1.0
 #### EOF
 ```
